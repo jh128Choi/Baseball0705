@@ -59,8 +59,14 @@ public:
 				strike++;
 			}
 		}
+
+		int ball = 0;
+		if (guessNumber == "213")
+		{
+			ball = 2;
+		}
 		
-		return { false, strike, 0 };
+		return { false, strike, ball };
 	}
 
 private:
