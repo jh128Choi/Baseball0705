@@ -1,4 +1,3 @@
 ## Baseball
 ---
-prime factor
-Baseball KATA
+Baseball KATA 
