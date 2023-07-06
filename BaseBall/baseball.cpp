@@ -44,13 +44,8 @@ public:
 		}
 	}
 
-	GuessResult guess(const string& guessNumber)
+	int getStrikes(const string& guessNumber)
 	{
-		assertIllegalArgument(guessNumber);
-		if (guessNumber == question)
-		{
-			return { true, 3, 0 };
-		}
 		int strike = 0;
 		for (int i = 0; i < 3; ++i)
 		{
@@ -59,12 +54,36 @@ public:
 				strike++;
 			}
 		}
+		return strike;
+	}
 
+	int getBalls(const string& guessNumber)
+	{
 		int ball = 0;
-		if (guessNumber == "213")
+		for (int i = 0; i < 3; ++i)
 		{
-			ball = 2;
+			if (guessNumber[i] == question[(i + 2) % 3])
+			{
+				ball++;
+			}
+			if (guessNumber[i] == question[(i + 1) % 3])
+			{
+				ball++;
+			}
 		}
+		return ball;
+	}
+
+	GuessResult guess(const string& guessNumber)
+	{
+		assertIllegalArgument(guessNumber);
+		if (guessNumber == question)
+		{
+			return { true, 3, 0 };
+		}
+
+		int strike = getStrikes(guessNumber);
+		int ball = getBalls(guessNumber);
 		
 		return { false, strike, ball };
 	}
